@@ -1,0 +1,21 @@
+conda create -n flaskdeploy flask
+
+activate flaskdeploy
+
+pip install flask_wtf
+pip install wtforms
+pip install flask
+pip install flask_login
+pip install werkzeug
+pip install datetime
+pip install itertools
+pip install flask_migrate
+pip install flask_sqlalchemy
+pip install flask_bootstrap
+pip install os
+pip install Pillow
+pip install gunicorn
+
+pip freeze > requirements.txt
+
+heroku login

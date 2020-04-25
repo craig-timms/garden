@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+<br>
+<div class="">
+  <form method="POST">
+  {{form.hidden_tag()}}
+  <div class="row">
+    <div class="col">
+      {{ form.man(class='form-control', placeholder='Manufacturer') }}
+    </div>
+    <div class="col">
+      {{ form.model(class='form-control', placeholder='Model') }}
+    </div>
+    <div class="col">
+      {{ form.alc(class='form-control', placeholder='% alc') }}
+    </div>
+    <div class="col">
+      {{ form.volume(class='form-control', placeholder='Volume') }}
+    </div>
+    <div class="col">
+      {{ form.quantity(class='form-control', placeholder='Quantity') }}
+    </div>
+    <div class="col">
+      {{ form.price(class='form-control', placeholder='Price') }}
+    </div>
+    <div class="col-auto">
+      {{form.submit(class='btn btn-secondary')}}
+    </div>
+    </div>
+  </form>
+</div>
+<br>
+
+
+<div class="" method="GET">
+  <div class="container">
+    {# Go through all beer entries #}
+    {% for beer in beerTable %}
+
+      <div class="row">
+        <div class="col"> {{ loop.index }} </div>
+        <div class="col"> {{ beer.man }} </div>
+        <div class="col"> {{ beer.model }} </div>
+        <div class="col"> {{ beer.eff }} </div>
+        <div class="col" method="POST"><a href="{{url_for('blog_posts.blog_post_delete_one', idx=loop.index)}}"><input type="button" class="btn btn-light btn-sm" value="X"></a></div>
+          {# <button formaction="{{ url_for('blog_posts.blog_post_delete_one',idx=2) }}" type="submit" class="close" formmethod="POST"> #}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+<br><br>
+
+<div method="GET">
+<a href="{{url_for('blog_posts.blog_post_delete')}}"><input type="button" class="btn btn-danger btn-lg btn-block" value="Reset"></a>
+</div>
+{% endblock %}

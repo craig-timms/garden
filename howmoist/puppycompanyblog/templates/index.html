@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="jumbotron mx-auto">
+    <div class="text-center">
+      <h1>Let science handle the choosing so you can focus on the drinking.</h1>
+      <p>Tap below</p>
+    </div>
+    <div class="text-center" data-toggle="modal" data-target="#exampleModalCenter">
+      <a href="#" >  {# {{ url_for('blog_posts.blog_post')}}"> #}
+        <img src="../static/beer_2.png" class="img-fluid" alt="Responsive image">
+      </a>
+    </div>
+  </div>
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Do you even know her?!</h5>
+        <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {# <div class="modal-body">
+        ...
+      </div> #}
+      <div class="modal-footer">
+        <a href="{{url_for('blog_posts.blog_post_delete')}}" class="list-group-item list-group-item-action list-group-item-light">Proceed</a>
+        {# <button type="button" class="btn btn-secondary btn-lg btn-block">Proceed</button> #}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
