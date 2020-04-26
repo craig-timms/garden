@@ -104,19 +104,32 @@ void loop()
     Serial.println();
 
     if (Firebase.pushInt(firebaseData1, path + "/" + nodeID, valMS1)) {
+      Serial.println("Pushed " + nodeID + " to " + valMS1);
+      delay(10);
+    }
+
+    if (Firebase.setInt(firebaseData1, path + "/" + nodeID + "_current", valMS1)) {
       Serial.println("Set " + nodeID + " to " + valMS1);
       delay(10);
     }
     
     if (Firebase.pushInt(firebaseData2, path + "/" + otherNodeID, valMS2)) {
+      Serial.println("Pushed " + otherNodeID + " to " + valMS2);
+      delay(10);
+    }
+    
+    if (Firebase.setInt(firebaseData2, path + "/" + otherNodeID + "_current", valMS2)) {
       Serial.println("Set " + otherNodeID + " to " + valMS2);
       delay(10);
     }
     
     if (Firebase.pushTimestamp(firebaseData3, path + "/Timestamp")) {
-//      Serial.print("TIMESTAMP (Seconds): ");
-//      Serial.println(firebaseData1.intData());
-        printf("TIMESTAMP (milliSeconds): %.0lf\n", firebaseData1.doubleData());
+        printf("Pushed TIMESTAMP (milliSeconds): %.0lf\n", firebaseData1.doubleData());
+        delay(10);
+    }
+    
+    if (Firebase.setTimestamp(firebaseData3, path + "/Timestamp" + "_current")) {
+        printf("Set TIMESTAMP (milliSeconds): %.0lf\n", firebaseData1.doubleData());
         delay(10);
     }
     

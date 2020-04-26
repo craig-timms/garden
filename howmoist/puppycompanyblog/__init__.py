@@ -1,10 +1,12 @@
 # puppycompanyblog/__init__.py
 import os
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+# from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
+from puppycompanyblog.models import SensorData
+import time
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -27,6 +29,11 @@ config = {
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 auth = firebase.auth()
+
+default_sensorData = SensorData(user_id='T8TkHy1Vy2fC5FyoJxma4pjCyMi2',
+                     time=time.ctime(db.child("moisture/Timestamp_current").get().val()/1000),
+                     sensor_1=db.child("moisture/sensor_1_current").get().val(),
+                     sensor_2=db.child("moisture/sensor_2_current").get().val()      )
 
 # basedir = os.path.abspath(os.path.dirname(__file__))
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(basedir,'data.sqlite')

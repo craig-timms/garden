@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<br>
+<div class="">
+  <div class="row">
+    <h3>Last update <span class="badge badge-success">{{sensorData.time}}</span></h3>
+  </div>
+  <div class="row">
+    <h3>Moisture 1 <span class="badge badge-success">{{sensorData.sensor_1}}</span></h3>
+  </div>
+  <div class="row">
+    <h3>Moisture 2 <span class="badge badge-success">{{sensorData.sensor_2}}</span></h3>
+  </div>
+</div>
+<br>
+
+{% endblock %}

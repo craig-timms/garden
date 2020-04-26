@@ -1,13 +1,13 @@
 #models.py
-from puppycompanyblog import db,login_manager
+# from puppycompanyblog import login_manager
 # from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
 import itertools
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(user_id)
+# @login_manager.user_loader
+# def load_user(user_id):
+#     return User.query.get(user_id)
 
 # class User(db.Model,UserMixin):
 #     __tablename__ = 'users'
@@ -27,20 +27,25 @@ def load_user(user_id):
 #     def __repr__(self):
 #         return f"Username {self.username}"
 #
-# class BlogPost(db.Model):
-#     users = db.relationship(User)
-#     id = db.Column(db.Integer,primary_key=True)
-#     user_id = db.Column(db.Integer,db.ForeignKey('users.id'),nullable=False)
-#     date = db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
-#     title = db.Column(db.String(140),nullable=False)
-#     text = db.Column(db.Text,nullable=False)
-#     def __init__(self,title,text,user_id):
-#         self.title = title
-#         self.text = text
-#         self.user_id = user_id
-#     def __repr__(self):
-#         return f"Post ID: {self.id} -- Date: {self.date} --- {self.title}"
-#
+class SensorData():
+    user_id = 1
+    time = 0
+    sensor_1 = 100
+    sensor_2 = 100
+    # users = db.relationship(User)
+    # id = db.Column(db.Integer,primary_key=True)
+    # user_id = db.Column(db.Integer,db.ForeignKey('users.id'),nullable=False)
+    # date = db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
+    # title = db.Column(db.String(140),nullable=False)
+    # text = db.Column(db.Text,nullable=False)
+    def __init__(self,user_id,time,sensor_1,sensor_2):
+        self.user_id = user_id
+        self.time = time
+        self.sensor_1 = sensor_1
+        self.sensor_2 = sensor_2
+    def __repr__(self):
+        return f"ID: {self.user_id} -- Time: {self.time} --- {self.sensor_1} --- {self.sensor_2}"
+
 # class BeerEntry:
 #     class_counter= 1
 #     def __init__(self,man,model,alc,volume,quantity,price):
