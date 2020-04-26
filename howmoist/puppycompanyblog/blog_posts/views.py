@@ -2,7 +2,7 @@ from flask import render_template,url_for,flash, redirect,request,Blueprint
 from flask_login import current_user,login_required
 from puppycompanyblog import db
 from puppycompanyblog.models import BlogPost,BeerEntry
-from puppycompanyblog.blog_posts.forms import BlogPostForm,BeerEntryForm
+from puppycompanyblog.blog_posts.forms import SensorData # ,BlogPostForm,BeerEntryForm
 
 beerTable = []
 
@@ -24,16 +24,10 @@ def create_post():
 
 # int: makes sure that the blog_post_id gets passed as in integer
 # instead of a string so we can look it up later.
-@blog_posts.route('/decider',methods=['GET','POST'])
+@blog_posts.route('/data',methods=['GET','POST'])
 def blog_post():
-    form = BeerEntryForm()
-    global beerTable
-    # print(beerTable)
-    # for beer in beerTable:
-    #     print(beer.model)
-    # if delete:
-    #     beerTable = []
-    #     delete = True
+
+
     if form.validate_on_submit():
         beerTable.append(BeerEntry(man=form.man.data,
                             model=form.model.data,
@@ -45,7 +39,7 @@ def blog_post():
         print('Submit success')
         beerTable.sort(key=lambda x: x.eff, reverse=True)
         return redirect(url_for('blog_posts.blog_post',form=form,beerTable=beerTable))
-    return render_template('blog_post.html',form=form,beerTable=beerTable)
+    return render_template('blog_post.html',sensorData=SensorData,beerTable=beerTable)
 
 @blog_posts.route('/decider/delete',methods=['GET'])
 def blog_post_delete():
